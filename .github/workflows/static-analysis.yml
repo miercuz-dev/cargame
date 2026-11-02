@@ -26,7 +26,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
 
       - name: Setup project via Conan
         uses: ./.github/actions/conan
@@ -38,7 +38,7 @@ jobs:
         run: cmake --preset conan-default
 
       - name: Initialize MSVC Code Analysis
-        uses: microsoft/msvc-code-analysis-action@v0.1.1
+        uses: microsoft/msvc-code-analysis-action@24c285ab36952c9e9182f4b78dfafbac38a7e5ee # v0.1.1
         id: analysis
         with:
           cmakeBuildDirectory: ${{ env.build }}
@@ -50,6 +50,6 @@ jobs:
 
         # Upload SARIF file to GitHub Code Scanning Alerts
       - name: Upload SARIF to GitHub
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@4bfa242aa49c5f7c6770b98670d354a7dfac05f8 # v3.39.1
         with:
           sarif_file: ${{ steps.analysis.outputs.sarif }}
